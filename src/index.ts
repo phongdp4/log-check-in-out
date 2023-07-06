@@ -1,20 +1,22 @@
-import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
+import logger from "./core/logger";
+import { AppDataSource } from "./data-source";
+import { MachineEventLogEntity } from "./entity/machine-event-log.entity";
+import { MachineEvent } from "./models/enum/manchine-event.enum";
 
-AppDataSource.initialize().then(async () => {
+AppDataSource.initialize()
+  .then(async () => {
+    const event = new MachineEventLogEntity();
+    event.type = MachineEvent.START_UP;
+    // await AppDataSource.manager.save(event);
+    logger.info("Saved a new event: " + JSON.stringify(event));
+  })
+  .catch((error) => logger.error(error));
 
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "Timber"
-    user.lastName = "Saw"
-    user.age = 25
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
+process.on("exit", function () {
+  logger.info("Exiting. ");
 
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
-
-    console.log("Here you can setup and run express / fastify / any other framework.")
-
-}).catch(error => console.log(error))
+  const event = new MachineEventLogEntity();
+  event.type = MachineEvent.SHUTDOWN;
+  logger.info(event);
+  //   await AppDataSource.manager.save(event);
+});
