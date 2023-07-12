@@ -1,30 +1,35 @@
 {
-   "name": "typeorm-sample",
-   "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
-   "type": "commonjs",
-   "devDependencies": {
-      "@types/node": "^16.11.10",
-      "@typescript-eslint/eslint-plugin": "^5.50.0",
-      "eslint": "^8.0.1",
-      "eslint-config-standard-with-typescript": "^36.0.0",
-      "eslint-plugin-import": "^2.25.2",
-      "eslint-plugin-n": "^15.0.0",
-      "eslint-plugin-promise": "^6.0.0",
-      "ts-node": "10.7.0",
-      "typescript": "^5.1.6"
-   },
-   "dependencies": {
-      "node-windows": "^1.0.0-beta.8",
-      "pg": "^8.4.0",
-      "reflect-metadata": "^0.1.13",
-      "typeorm": "0.3.17",
-      "winston": "^3.9.0",
-      "winston-daily-rotate-file": "^4.7.1"
-   },
-   "scripts": {
-      "start": "ts-node src/index.ts",
-      "typeorm": "typeorm-ts-node-commonjs",
-      "tsc": "tsc"
-   }
+  "name": "typeorm-sample",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Awesome project developed with TypeORM.",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^36.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "ts-node": "10.7.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-windows": "^1.0.0-beta.8",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.17",
+    "winston": "^3.9.0",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "tsc": "tsc",
+    "start": "tsc && node build/index.js",
+    "svc-install": "node install.js",
+    "svc-uninstall": "node uninstall.js"
+  }
 }

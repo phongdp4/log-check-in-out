@@ -1,16 +1,18 @@
 var Service = require('node-windows').Service;
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Create a new service object
 var svc = new Service({
-    name: 'Hello World',
+    name: process.env.SERVICE_NAME,
     description: 'The nodejs.org example web server.',
     script: 'D:\\log-check-in-out\\build\\index.js',
     nodeOptions: [
         '--harmony',
-        '--max_old_space_size=4096'
+        '--max_old_space_size=128'
     ]
     //, workingDirectory: '...'
-    //, allowServiceLogon: true
+    // , allowServiceLogon: true
 });
 
 // Listen for the "install" event, which indicates the

@@ -15,5 +15,5 @@ export class MachineEventLogEntity {
   type: MachineEvent;
 
   @CreateDateColumn({ name: "created_at", type: "timestamptz" })
-  createdAt: Date;
+  createdAt: string;
 }
