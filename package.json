@@ -31,5 +31,6 @@
     "start": "tsc && node build/index.js",
     "svc-install": "node install.js",
     "svc-uninstall": "node uninstall.js"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
