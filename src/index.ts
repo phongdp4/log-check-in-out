@@ -26,18 +26,18 @@ function exitHandler() {
   // });
 }
 
-// Catches exit event
-process.on("exit", exitHandler.bind(null));
-
 // Catches ctrl+c event
 process.on("SIGINT", () => {
   exitHandler();
-  process.exit(-1);
+  process.exit(0);
 });
 
-// Catches "kill pid" (for example: nodemon restart)
-process.on("SIGUSR1", exitHandler.bind(null));
-process.on("SIGUSR2", exitHandler.bind(null));
-
-// Catches uncaught exceptions
-// process.on("uncaughtException", exitHandler.bind(null));
+process.on("message", function (msg) {
+  if (msg == "shutdown") {
+    console.log("Closing all connections...");
+    setTimeout(function () {
+      console.log("Finished closing connections");
+      process.exit(0);
+    }, 1500);
+  }
+});
